@@ -91,6 +91,22 @@ span.custom-ar{
 											<ul class="list-group" id="cart-items"></ul>
 										</div>
 										<div class="modal-footer">
+<form action="/course/checkout/" method="post">
+	{% csrf_token %}
+	<input type="hidden" id="card-hidden" name="cartJson" >
+
+	<button
+	onclick="addHiddenVal()"
+											type="submit"
+											href=""
+												
+												class="btn btn-success"
+												
+											>
+												Checkout
+										</button></form>
+
+											
 											<button
 												type="button"
 												class="btn btn-secondary"
@@ -120,6 +136,13 @@ span.custom-ar{
 		</nav>
 
 		<script>
+
+			const addHiddenVal=()=>{
+				var input = document.getElementById("card-hidden");
+				console.log(JSON.parse(localStorage.getItem("cart")));
+				console.log(input);
+				input.value = localStorage.getItem("cart");
+			}
 	
   const updateCartButton=()=>{
     var value = JSON.parse(localStorage.getItem("cart"));
@@ -136,6 +159,7 @@ document.getElementById("cartId").innerHTML = value
       	var cart = JSON.parse(localStorage.getItem("cart"));
         cart[id] = {...cart[id],value: cart[id].value +1}
         localStorage.setItem("cart",JSON.stringify(cart))
+		
         putDataInCartPopup()
         updateCartButton()
       };
@@ -158,6 +182,7 @@ document.getElementById("cartId").innerHTML = value
 				var cart = JSON.parse(localStorage.getItem("cart"));
 
 				var htmlStr = "";
+				addHiddenVal()
   
 if(cart==null||Object.keys(cart).length===0){
   htmlStr ='<li class="list-group-item"><h3>You dont have anything in your cart. Please <a href="/course/list/">click here</a> to add items<h3/>  </li> '

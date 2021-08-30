@@ -8,5 +8,6 @@ urlpatterns = [
     path('detail/<int:id>',views.Detail),
     path('contactus/',views.contactUs),
     path('contactsubmit/',views.contactSubmit),
+    path('checkout/',views.checkout),
     
 ]
