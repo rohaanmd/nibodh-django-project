@@ -12,33 +12,100 @@ List
 {% endblock head %}
 
 {% block css %}
-  h1{
-      color:blue;
-  }
+
 {% endblock css %}
 
 {% block body %}
 
+<div class="container">
+    <h1 class="display-3 mb-5 text-center">Select your course</h1>
 
 
-      <h1 class="display-3 mb-5 text-center">Select your course</h1>
-      <div class="d-flex justify-content-evenly course-container container">
 
-    {% for i in data %}
-    <div class="card mb-2" style="width: 18rem;">
-      <img src="/media/{{i.image}}" class="card-img-top" alt="{{i.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{i.name}}</h5>
-        <p class="card-text">{{i.desc}}</p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{i.price}} INR</li>
-          <li class="list-group-item">{{i.pub_date}}</li>
-        </ul>
-        <a href="#" class="btn btn-primary">Add to cart</a>
-      </div>
+<!-- second -->
+
+{% for key,value in data.items %}
+<div>
+      
+  <h1 class="display-5 mb-5 text-start">{{key}}</h1>
+  <div class="d-flex justify-content-evenly course-container container">
+
+    {% for i in value  %}
+  
+<div class="card mb-2" style="width: 18rem;">
+  <img src="/media/{{i.image}}" class="card-img-top" alt="{{i.name}}">
+  <div class="card-body">
+    <h5 class="card-title">{{i.name}}</h5>
+    <p class="card-text">{{i.desc}}</p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{i.price}} INR</li>
+      <li class="list-group-item">{{i.pub_date}}</li>
+      <li class="list-group-item">{{i.category}}</li>
+    </ul>
+    <div class="row">
+<div class="col-6">
+  <button  class="btn btn-primary" onclick="addToCart('{{i.id}}','{{i.name}}')" >Add to cart</button>
+</div>
+<div class="col-6">
+  <a href="/course/detail/{{i.id}}" class="btn btn-primary">Details</a>
+</div>
+
+
     </div>
-    {% endfor %}
-        </div>
+    
+    <!-- <a href="/course/detail/?id={{i.id}}" class="btn btn-primary">View more details</a> -->
+    
+  </div>
+</div>
+
+  {% endfor %}
+    
+    </div>
+    
+</div>
+
+
+{% endfor %}
+
+</div>
+
+<script>
+
+const addToCart =(id,name)=>{
+
+
+  var cart = JSON.parse(localStorage.getItem("cart"))
+
+  if(cart)
+  {
+    if(cart[id]){
+      cart[id] = {name:name,value: cart[id].value + 1} 
+    }
+    else{
+      cart[id]={name:name,value:1}
+    }
+    
+  }
+else{
+  cart = {[id]:{name:name,value:1} }
+}
+
+
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+
+
+var value = JSON.parse(localStorage.getItem("cart"));
+
+document.getElementById("cartId").innerHTML = Object.keys(value).length
+}
+
+
+
+</script>
+
+
 {% endblock body %}
     
 
