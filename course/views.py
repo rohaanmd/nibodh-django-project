@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . models import course , contact
 # Create your views here.
-
+import json
 
 def Index(request):
     
@@ -14,7 +14,7 @@ def List(request):
     AllCat = course.objects.values("category") 
     cats = {var["category"] for var in AllCat }
     # for var in AllCat:
-    #     cats.append(var["category"])
+    # cats.append(var["category"])
     # cats = set(cats)    
     Courses = {}
     for val in cats:
@@ -52,3 +52,19 @@ def contactSubmit(request):
     newContact.save()
 
     return HttpResponse("Thank you")
+
+
+def checkout(request):
+    str = request.POST.get("cartJson")
+
+    print('The JSON String is', str)
+
+    convertedDict = json.loads(str)
+
+    print("After conversion: ", convertedDict)
+    print(type(convertedDict))
+
+# tbc
+
+
+    return render(request,"course\checkout.html")
