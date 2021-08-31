@@ -1,0 +1,48 @@
+{% extends "course\basic.html" %}
+
+{% block title %}
+Blog Details
+{% endblock title %}
+
+{% block head %} 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+{% endblock %}
+{% block css %}
+.para-blog{
+
+    font-family: "Poppins";
+    color: #000;
+    font-size: 23px;
+
+}
+
+{% endblock css %}
+{% load static %}
+
+{% block body %}
+<img src="{% static '/image/6.jpg' %}" alt="" style="    max-height: 479px; min-width: 100%;" class="img-hero" >
+
+<div class="container">
+
+    <div class="title">
+
+<h2 class="display-1">heading </h2>
+
+    </div>
+
+    <p class="para-blog">
+
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At nostrum aliquam corporis dicta, facilis vel labore? Blanditiis nihil, perspiciatis repellendus, placeat fugit rem doloremque eaque facilis odit neque quibusdam aut!
+        
+
+
+    </p>
+    
+</div>
+
+
+
+{% endblock body %}

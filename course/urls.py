@@ -9,5 +9,11 @@ urlpatterns = [
     path('contactus/',views.contactUs),
     path('contactsubmit/',views.contactSubmit),
     path('checkout/',views.checkout),
+    path('submitcheckout/',views.submitcheckout),
+    path('login/',views.login),
+    path('signup/',views.signup),
+    path('bloglist/',views.bloglist),
+    path('blogcreate/',views.blogcreate),
+    path('blogdetails/',views.blogdetails),
     
 ]

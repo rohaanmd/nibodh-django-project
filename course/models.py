@@ -24,3 +24,16 @@ class contact(models.Model):
     pub_date = models.DateField(default=timezone.now)
     def __str__(self):
         return self.name
+
+class order(models.Model):
+    jsonCart = models.CharField(max_length=200)
+    email = models.CharField(max_length=50,default="")
+    first_name =  models.CharField(max_length=50)
+    state =  models.CharField(max_length=50)
+    isSameBillingAddress = models.BooleanField(default=False)
+    last_name =  models.CharField(max_length=50)
+    address =  models.CharField(max_length=200)
+    zip = models.IntegerField()
+    order_date = models.DateField(default=timezone.now)
+    def __str__(self):
+        return self.email
