@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
+
 
 class course(models.Model):
     course_id = models.AutoField
@@ -26,6 +28,12 @@ class contact(models.Model):
         return self.name
 
 class order(models.Model):
+    author = models.ForeignKey(
+      settings.AUTH_USER_MODEL, # new
+      on_delete=models.CASCADE,
+      default=1
+    )
+    id = models.AutoField(primary_key=True)
     jsonCart = models.CharField(max_length=200)
     email = models.CharField(max_length=50,default="")
     first_name =  models.CharField(max_length=50)

@@ -22,7 +22,6 @@ def List(request):
     params = {
         "data": Courses
     }
-    
     return render(request,"course\index.html",params)
 
 
