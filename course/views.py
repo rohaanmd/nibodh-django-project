@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from . models import course , contact , order
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate , login , logout
 # Create your views here.
 import json
 
@@ -47,8 +49,9 @@ def contactSubmit(request):
     tel = request.POST.get("phone")
     desc = request.POST.get("desc")
     File =request.POST.get("screenshot")
+    user = request.user
 
-    newContact  =  contact(email=email ,name=name , desc=desc , phone=tel ,screenshot=File)
+    newContact  =  contact(email=email ,name=name , desc=desc , phone=tel ,screenshot=File,author=user)
     newContact.save()
 
     return HttpResponse("Thank you")
@@ -101,16 +104,45 @@ def submitcheckout(request):
     # return render(request,"course\contactus.html")
 
 
-def login(request):
+def loginView(request):
+    username = request.POST.get('username')
+    pass1 = request.POST.get('pass')
+    print(username)
+    print(pass1)
+    user = authenticate(username = username , password = pass1)
+    print(user)
+    if user is not None:
+        login(request , user)
+        return HttpResponse("Login succ") 
+    else:
+        return HttpResponse("Login failed")    
     
-    
+
+
+def Loginn(request):
+
     return render(request,"course/login.html")
 
 
-def signup(request):
+def signupView(request):
     
     
     return render(request,"course/signup.html")
+
+
+def signup(request):
+    username = request.POST.get('username')
+    email = "roh@hh.com"
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    pass1 = request.POST.get('pass1')
+    pass2 = request.POST.get('pass2')
+    print(username )
+    myUser = User.objects.create_user(username,email,pass1)
+    myUser.save()
+    
+    
+    return HttpResponse("signin suc")
 
 
 

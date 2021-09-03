@@ -15,6 +15,14 @@
         <h1 class="display-1">
             Contact Us
         </h1>
+
+        {% if user.is_authenticated %}
+
+        you are is_authenticated
+
+        {% else %}
+          you are not auth
+        {% endif %}
         
         <div class="col-12">
         <form action="/course/contactsubmit/" method="POST">

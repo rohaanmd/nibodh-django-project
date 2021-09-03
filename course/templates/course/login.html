@@ -110,7 +110,8 @@ body {
 	</head>
 	<body>
 	
-        <form class="form-signin">
+        <form class="form-signin" action="/course/login/" method="post">
+          {% csrf_token %}
             <div class="text-center mb-4">
               <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Login</h1>
@@ -118,12 +119,12 @@ body {
             </div>
       
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-              <label for="inputEmail">Email address</label>
+              <input type="text" id="inputEmail" name="username" class="form-control" placeholder="username" required autofocus>
+              <label for="inputEmail">username</label>
             </div>
       
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="pass">
               <label for="inputPassword">Password</label>
             </div>
       
