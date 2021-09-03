@@ -46,10 +46,10 @@ def contactSubmit(request):
     name = request.POST.get("name")
     tel = request.POST.get("phone")
     desc = request.POST.get("desc")
-    File =request.POST.get("screenshot")
-
+    File = request.FILES["screenshot"]
     newContact  =  contact(email=email ,name=name , desc=desc , phone=tel ,screenshot=File)
     newContact.save()
+
 
     return HttpResponse("Thank you")
 
@@ -99,42 +99,5 @@ def submitcheckout(request):
 
     return HttpResponse("Thank you")
     # return render(request,"course\contactus.html")
-
-
-def login(request):
-    
-    
-    return render(request,"course/login.html")
-
-
-def signup(request):
-    
-    
-    return render(request,"course/signup.html")
-
-
-
-
-def bloglist(request):
-    
-    
-    return render(request,"course/bloglist.html")
-
-
-
-
-def blogcreate(request):
-    
-    
-    return render(request,"course/blogcreate.html")
-
-
-
-
-def blogdetails(request):
-    
-    
-    return render(request,"course/blogdetails.html")
-
 
 

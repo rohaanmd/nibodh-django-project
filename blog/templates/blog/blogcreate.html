@@ -18,7 +18,7 @@ Blog Create
         </h1>
         
         <div class="col-12">
-        <form action="/course/contactsubmit/" method="POST">
+        <form enctype="multipart/form-data" action="/blog/blogcreate/" method="POST">
             {% csrf_token %}
             
             
